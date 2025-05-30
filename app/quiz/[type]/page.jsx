@@ -45,7 +45,6 @@ export default function QuizPage({ params }) {
   const handleOptionSelect = (index) => {
     setSelectedOption(index);
   };
-
   const handleNextQuestion = () => {
     // Store the user's answer
     const newUserAnswers = [...userAnswers];
@@ -55,7 +54,9 @@ export default function QuizPage({ params }) {
     if (currentQuestionIndex < questions.length - 1) {
       // Move to next question
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOption(newUserAnswers[currentQuestionIndex + 1]); // Load saved answer if exists
+      // Clear selection if no saved answer exists
+      const savedAnswer = newUserAnswers[currentQuestionIndex + 1];
+      setSelectedOption(savedAnswer !== null ? savedAnswer : null);
     } else {
       // Quiz completed, calculate results and navigate
       const finalAnswers = newUserAnswers;
@@ -92,7 +93,6 @@ export default function QuizPage({ params }) {
       router.push("/results");
     }
   };
-
   const handlePreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       // Store current answer before going back
@@ -102,7 +102,9 @@ export default function QuizPage({ params }) {
 
       // Go to previous question
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setSelectedOption(userAnswers[currentQuestionIndex - 1]);
+      // Set to saved answer or null if no answer was saved
+      const savedAnswer = userAnswers[currentQuestionIndex - 1];
+      setSelectedOption(savedAnswer !== null ? savedAnswer : null);
     }
   };
 

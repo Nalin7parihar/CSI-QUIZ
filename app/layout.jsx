@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Tech Club Quiz Event",
+  title: "CSI Open-Day Quiz Event",
   description: "Tech and Non-Tech quizzes for the Tech Club event",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
               <img
                 src="/logo.png"
                 alt="Tech Club Logo"
-                className="h-12 w-12 rounded-full"
+                className="h-35 w-35 rounded-full"
               />
             </div>
             {children}
